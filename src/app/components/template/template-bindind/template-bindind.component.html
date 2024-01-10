@@ -1,15 +1,40 @@
 <h2>Template</h2>
 <h3>Text Interpolation</h3>
-{{name}} - {{age}} - {{sum(1,2)}}
+{{name}} - {{age}}
 
 <p>{{1+4}}</p>
 <p>{{condition}}</p>
+
+<hr/>
 
 <h2>Property binding</h2>
 
 <button [disabled]="isDisabled">Button</button>
 <img [src]="srcValue" [alt]="name" [title]="name">
 
+<hr/>
+
 <h2>Atribute binding</h2>
 
 <p [attr.title]="name" [attr.aria-label]="name">John Doe</p>
+
+<hr/>
+
+<h2>Class and style binds</h2>
+
+<p [class.background-red]="age > 32" [class.background-blue]="age < 32">{{name}}</p>
+
+<p [style.text-decoration]="isTextDecoration">{{age}}</p>
+
+<hr/>
+
+<h2>Event binding</h2>
+
+<button (click)="sum()">+</button>
+<button (click)="sub()">-</button>
+
+<input (keydown.shift.y)="onKeyDown($event)">
+
+<div style="width: 300px; height: 300px; margin-top: 10px; background: green" (mousemove)="onMouseMove($event)">{{mousePositionX}}, {{mousePositionY}}</div>
+
+
