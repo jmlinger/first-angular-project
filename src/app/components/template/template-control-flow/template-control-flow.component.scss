@@ -1,0 +1,14 @@
+:host {
+  display: block;
+}
+
+.name-list-container {
+  margin: 20px;
+  border-style: dotted;
+  border-width: 2px;
+  border-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 20%;
+}

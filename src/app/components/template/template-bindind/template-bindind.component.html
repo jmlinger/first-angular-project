@@ -16,7 +16,7 @@
 
 <h2>Atribute binding</h2>
 
-<p [attr.title]="name" [attr.aria-label]="name">John Doe</p>
+<p [attr.title]="name" [attr.aria-label]="name">Lilia Zacanni</p>
 
 <hr/>
 
@@ -37,4 +37,20 @@
 
 <div style="width: 300px; height: 300px; margin-top: 10px; background: green" (mousemove)="onMouseMove($event)">{{mousePositionX}}, {{mousePositionY}}</div>
 
+<hr/>
 
+<h3>Two-way binding</h3>
+
+<input [(ngModel)]="name"/>
+
+{{name}}
+
+<hr/>
+
+<h3>Diretivas de Atributos</h3>
+<div [ngClass]="{ 'background-red': age > 35, 'background-blue': age < 35 }">Classes condicionais</div>
+
+<div [ngStyle]="{
+  'color': age > 35 ? 'green' : 'red',
+  'font-size': age > 35 ? '10px' : '20px',
+}">Estilo dinâmico</div>

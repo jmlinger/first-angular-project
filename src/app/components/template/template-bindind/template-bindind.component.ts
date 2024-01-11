@@ -1,10 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-template-bindind',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, NgClass],
   templateUrl: './template-bindind.component.html',
   styleUrl: './template-bindind.component.scss'
 })
@@ -12,7 +13,7 @@ export class TemplateBindindComponent {
   public name = "John Doe"
   public age = 32
   public condition = this.age > 1 ? 'test' : 'test2'
-  public isDisabled = true
+  public isDisabled = this.age > 32 ? true : false
   public srcValue = 'https://digimon.shadowsmith.com/img/myotismon.jpg'
   public isTextDecoration = this.age >= 32 ? 'underline' : 'none'
   public sum () {
