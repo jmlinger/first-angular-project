@@ -1,30 +1,36 @@
 <h2>Control Flow</h2>
-<h3>IF, FOR</h3>
+<h3>IF, FOR, SWITCH CASE</h3>
 
 <!-- Forma Nova -->
-
 @if (loadingData$ | async; as data) {
-  <ul>
-    @for(item of data; track item) {
-      <li>{{item}} - teste</li>
-    }
-  </ul>
+  @if (itens.length === 0) {
+    <p>Não há dados</p>
+  } @else {
+    <ul>
+      @for(item of data; track item) {
+        <li>{{item.name}}</li>
+      }
+    </ul>
+  }
 } @else {
   <p>Carregando...</p>
 }
 
+<!-- Sem a condicional if -->
 <ul>
   @for(item of loadingData$ | async; track item) {
-    <li>{{item}} - teste</li>
+    <li>{{item.name}}</li>
   }
 </ul>
+
+<hr>
 
 <!-- Forma Antiga -->
 
 <ng-container *ngIf="loadingData$ | async as data; else loading">
   <ul>
     <ng-container *ngFor="let item of data; trackBy: trackByFn">
-      <li>{{item}}</li>
+      <li>{{item.name}}</li>
     </ng-container>
   </ul>
 </ng-container>
@@ -33,6 +39,7 @@
 <hr>
 <hr>
 
+<!-- Forma Nova -->
 @for (
   item of itens; track item.name;
   let i = $index;
@@ -53,7 +60,8 @@
   </div>
 }
 
-<hr>
+<hr [hidden]="itens.length === 0">
+
 <!-- Forma Antiga -->
 
 <ng-container
@@ -82,10 +90,10 @@
 <input #name1 type="text">
 <button (click)="addNewName(name1.value)">Ad Name</button>
 
-
 <hr>
 <hr>
 
+<!-- Forma Nova -->
 <ul>
   @for(item of itens; track item.name) {
     <li>{{item.name}}</li>
@@ -97,3 +105,55 @@
 <input #name2 type="text">
 <button (click)="addNewName(name2.value)">Ad Name</button>
 
+<hr>
+
+<!-- Forma Antiga -->
+<ul>
+  <ng-container *ngIf="itens.length === 0; else itensExist">
+    <li>Não contém valores</li>
+  </ng-container>
+  <ng-template #itensExist>
+    <ng-container *ngFor="let item of itens">
+      <li>{{item.name}}</li>
+    </ng-container>
+  </ng-template>
+</ul>
+
+<hr>
+<hr>
+
+<select [(ngModel)]="selectedOption">
+  <option *ngFor="let option of options" [value]="option">{{option}}</option>
+</select>
+
+<!-- Forma Nova -->
+@switch (selectedOption) {
+  @case ('A') {
+    <p>Sim sua letra é: A</p>
+  }
+  @case ('B') {
+    <p>Sim sua letra é: B</p>
+  }
+  @case ('C') {
+    <p>Sim sua letra é: C</p>
+  }
+  @default {
+    <p>Os dados não foram encontrados</p>
+  }
+}
+
+<!-- Forma Antiga -->
+<ng-container [ngSwitch]="selectedOption">
+  <ng-container *ngSwitchCase="'A'">
+    <p>Sim sua letra é: A</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'B'">
+    <p>Sim sua letra é: B</p>
+  </ng-container>
+  <ng-container *ngSwitchCase="'C'">
+    <p>Sim sua letra é: C</p>
+  </ng-container>
+  <ng-container *ngSwitchDefault="">
+    <p>Os dados não foram encontrados</p>
+  </ng-container>
+</ng-container>

@@ -1,12 +1,17 @@
-import { AsyncPipe, CommonModule, NgFor, NgIf } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, CommonModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { AfterViewInit, ChangeDetectionStrategy, Component, NgModule, OnDestroy, OnInit } from '@angular/core';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Observable, delay, of } from 'rxjs';
+
+interface ItensI {
+  name: string
+}
 
 @Component({
   selector: 'app-template-control-flow',
   standalone: true,
   imports: [
-    AsyncPipe, NgIf, NgFor
+    AsyncPipe, NgIf, NgFor, NgSwitch, FormsModule, NgSwitchCase, NgSwitchDefault
   ],
   templateUrl: './template-control-flow.component.html',
   styleUrl: './template-control-flow.component.scss',
@@ -25,24 +30,24 @@ export class TemplateControlFlowComponent implements OnInit, AfterViewInit, OnDe
   ngOnDestroy(): void {
     throw new Error('Method not implemented.');
   }
+
   public isTrue = true === true
 
-  public loadingData$: Observable<string[]> = of([
-    'item 1',
-    'item 2',
-    'item 3',
-  ]).pipe(delay(3000))
+  public itens: Array<ItensI> = []
+
+  public loadingData$: Observable<Array<ItensI>> = of(this.itens).pipe(delay(3000))
 
   public trackByFn(index:number) {
     return index
   }
 
-  public itens: Array<{name: string}> = []
-
   public addNewName(value: string) {
     console.log(this.itens);
     return this.itens.push({name: value})
-
   }
+
+  public options: string[] = ["", "A", "B", "C"]
+
+  public selectedOption = ''
 
 }
