@@ -1,3 +1,4 @@
+import { TemplateDeferrableViewsComponent } from './components/template/template-deferrable-views/template-deferrable-views.component';
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -10,14 +11,15 @@ import { TemplateControlFlowComponent } from './components/template/template-con
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindindComponent, TemplateVariablesComponent, TemplateControlFlowComponent],
+  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindindComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent],
   template: `
     <h1>Curso de Angular</h1>
     <div class="theme-red">
       <!-- <app-new-component /> -->
       <!-- <app-template-bindind /> -->
       <!-- <app-template-variables /> -->
-      <app-template-control-flow/>
+      <!-- <app-template-control-flow/> -->
+      <app-template-deferrable-views/>
     </div>
   `,
 })
