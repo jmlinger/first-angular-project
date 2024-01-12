@@ -7,11 +7,12 @@ import { NewComponent } from './components/new-component/new-component.component
 import { TemplateBindindComponent } from './components/template/template-bindind/template-bindind.component';
 import { TemplateVariablesComponent } from './components/template/template-variables/template-variables.component';
 import { TemplateControlFlowComponent } from './components/template/template-control-flow/template-control-flow.component';
+import { SignalsComponent } from './components/signals/signals.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindindComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent],
+  imports: [CommonModule, RouterOutlet, NewComponent, TemplateBindindComponent, TemplateVariablesComponent, TemplateControlFlowComponent, TemplateDeferrableViewsComponent, SignalsComponent],
   template: `
     <h1>Curso de Angular</h1>
     <div class="theme-red">
@@ -19,7 +20,8 @@ import { TemplateControlFlowComponent } from './components/template/template-con
       <!-- <app-template-bindind /> -->
       <!-- <app-template-variables /> -->
       <!-- <app-template-control-flow/> -->
-      <app-template-deferrable-views/>
+      <!-- <app-template-deferrable-views/> -->
+      <app-signals/>
     </div>
   `,
 })
